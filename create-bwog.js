@@ -7,7 +7,7 @@ import { program, Option } from 'commander';
 program
     .description('Create new bwog app')
     .addOption(new Option('-t, --template <string>', 'type of deployment: cloudflare workers or a traditional web server.').choices(['cloudflare-worker', 'httpd']).makeOptionMandatory())
-    .requiredOption('-d, --destination <string>', 'location where app should be set up', './')
+    .option('-d, --destination <string>', 'location where app should be set up', './')
     .option('-f, --overwrite', 'merge files with destination directory, overwriting files with the same names');
 program.parse();
 
