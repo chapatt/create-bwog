@@ -1,0 +1,11 @@
+{
+    "name": "bwog-cloudflare-worker-template",
+    "private": "true",
+    "scripts": {
+        "build": "npx bwog build",
+        "deploy": "npx wrangler deploy"
+    },
+    "dependencies": {
+        "bwog": "^0.1.0"
+    }
+}
