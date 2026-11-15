@@ -1,0 +1,72 @@
+{
+  "name": "bwog-app",
+  "main": "./node_modules/bwog/cloudflare/worker.js",
+  "upload_source_maps": true,
+  "compatibility_date": "2026-11-11",
+  "workers_dev": false,
+  "preview_urls": false,
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "DATABASE",
+        "class_name": "Database"
+      }
+    ]
+  },
+  "r2_buckets": [
+    {
+      "binding": "STORE",
+      "bucket_name": "blog-public"
+    },
+    {
+      "binding": "PRIVATE_BUCKET",
+      "bucket_name": "blog-private"
+    }
+  ],
+  "exports": {
+    "Database": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  },
+  "keep_vars": true,
+  "vars": {
+    "SITE_DOMAIN": "example.com",
+    "GOOGLE_OAUTH_AUTHORIZED_USER_ID": "12345ABCDE",
+    "GOOGLE_OAUTH_CLIENT_ID": "12345ABCDE.apps.googleusercontent.com",
+    "AUTHOR_NAME": "Alice Smith",
+    "AUTHOR_EMAIL": "author@example.com",
+    "ENABLE_AP": "false",
+    "AP_HANDLE": "author@example.com",
+    "AP_USERNAME": "author",
+    "AP_PUBLIC_KEY_STRING": "-----BEGIN PUBLIC KEY-----\n1234567890\n-----END PUBLIC KEY-----"
+  },
+  "secrets": {
+    "required": ["JWT_SECRET", "GOOGLE_OAUTH_CLIENT_SECRET"]
+  },
+  "alias": {
+    "bwog.config": "./bwog.config.js"
+  },
+  "routes": [
+    {
+      "pattern": "example.org/setup*",
+      "zone_name": "example.org"
+    },
+    {
+      "pattern": "example.org/generate*",
+      "zone_name": "example.org"
+    },
+    {
+      "pattern": "example.org/post*",
+      "zone_name": "example.org"
+    },
+    {
+      "pattern": "example.org/login*",
+      "zone_name": "example.org"
+    },
+    {
+      "pattern": "example.org/logout*",
+      "zone_name": "example.org"
+    }
+  ]
+}
