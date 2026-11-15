@@ -10,7 +10,7 @@ const copyFilesList = [
 
 copyFilesList.forEach(copyFile => {
     cpSync(
-        resolve('./node_modules/bwog/', copyFile[0]),
+        resolve('./node_modules/@bwog/bwog/', copyFile[0]),
         resolve('./templates/', copyFile[1])
     );
 })
