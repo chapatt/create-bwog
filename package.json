@@ -22,5 +22,8 @@
   },
   "bin": {
     "create-bwog": "./create-bwog.js"
+  },
+  "dependencies": {
+    "commander": "^15.1.0"
   }
 }
