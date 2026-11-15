@@ -15,7 +15,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@bwog/bwog": "^0.1.0"
+    "@bwog/bwog": "^0.1.1"
   },
   "scripts": {
     "build": "node build.js"
