@@ -1,6 +1,6 @@
 {
   "name": "@bwog/create-bwog",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Package for initializing a new bwog app",
   "author": "Chase Patterson (https://github.com/chapatt)",
   "homepage": "https://github.com/chapatt/bwog",
