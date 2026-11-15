@@ -13,8 +13,14 @@
   "engines": {
     "node": ">=22.23.5"
   },
+  "type": "module",
+  "devDependencies": {
+    "bwog": "^0.1.0"
+  },
+  "scripts": {
+    "build": "node build.js"
+  },
   "bin": {
     "create-bwog": "./create-bwog.js"
-  },
-  "type": "module"
+  }
 }
