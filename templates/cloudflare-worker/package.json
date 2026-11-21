@@ -1,12 +1,16 @@
 {
     "name": "bwog-cloudflare-worker-template",
     "private": "true",
+    "type": "module",
     "scripts": {
-        "build": "npx bwog build",
-        "deploy": "npx wrangler deploy"
+        "build": "npx bwog build -t cloudflare-worker",
+        "deploy": "npx wrangler deploy",
+        "dev": "npx wrangler dev"
     },
     "dependencies": {
-        "@bwog/bwog": "^0.1.0",
+        "@bwog/bwog": "^0.1.0"
+    },
+    "devDependencies": {
         "wrangler": "^4.162.0"
     }
 }

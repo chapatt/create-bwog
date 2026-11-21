@@ -1,8 +1,9 @@
 {
     "name": "bwog-httpd-template",
     "private": "true",
+    "type": "module",
     "scripts": {
-        "build": "npx bwog build",
+        "build": "npx bwog build -t vps",
         "run": "npx bwog run"
     },
     "dependencies": {
