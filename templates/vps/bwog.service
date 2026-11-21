@@ -1,0 +1,12 @@
+[Unit]
+Description=bwog editor
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/node --env-file=/var/www/bwog/.env /var/www/bwog/app.js
+
+[Install]
+WantedBy=multi-user.target
