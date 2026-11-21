@@ -1,0 +1,2 @@
+<p><%~ it.post.text.replace(/(https:\/\/\S*)/g, '<a href="$1">$1</a>').replaceAll('\n', '<br />') %></p>
+<p><i><%= `${it.post.artist} -  ${it.post.title}` %></i></p>

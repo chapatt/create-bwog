@@ -2,10 +2,12 @@ import { resolve } from 'node:path';
 import { cpSync } from 'node:fs';
 
 const copyFilesList = [
-    ['wrangler.jsonc', 'cloudflare-worker/wrangler.jsonc'],
     ['bwog.config.js', 'cloudflare-worker/bwog.config.js'],
-    ['.env.example', 'vps/.env'],
+    ['wrangler.jsonc', 'cloudflare-worker/wrangler.jsonc'],
     ['bwog.config.js', 'vps/bwog.config.js'],
+    ['.env.example', 'vps/.env'],
+    ['nginx.config', 'vps/nginx.config'],
+    ['bwog.service', 'vps/bwog.service'],
 ];
 
 copyFilesList.forEach(copyFile => {

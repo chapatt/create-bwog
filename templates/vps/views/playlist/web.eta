@@ -1,0 +1,10 @@
+<time class="timestamp" datetime="<%= it.post.createdAt %>">
+    <%= (new Date(it.post.createdAt)).toLocaleDateString() %>
+    (<%= (new Date(it.post.createdAt)).toLocaleTimeString([], {timeStyle: 'short'}) %>)
+</time>
+<p class="text"><%~ it.post.text.replace(/(https:\/\/\S*)/g, '<a href="$1">$1</a>').replaceAll('\n', '<br />') %></p>
+<ol class="playlist">
+    <% it.post.tracks.forEach(song => { %>
+        <li class="song"><span class="artist"><%= song.artist %></span> - <span class="title"><%= song.title %></span></li>
+    <% }) %>
+</ol>

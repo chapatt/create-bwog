@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% if (it.title === null) { %>
+        <meta name="description" content="A microblog of music I'm currently interested in.">
+    <% } else { %>
+        <meta name="description" content="An archive of posts from <%= `${it.title}` %>.">
+    <% } %>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml;charset=utf-8,<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><rect style='fill: %23ee009a' width='100' height='100' /><path style='fill: white' d='m 46.896145,88.64921 C 40.374404,74.369955 49.107189,69.176421 63.300981,75.966678 a 1.0075789,1.0075789 128.88245 0 0 1.239574,-1.537184 C 52.98292,61.336397 44.490904,53.053429 54.4857,40.9555 62.7098,31.0007 63.8784,28.384 56.693,22.0911 L 44.70917,11.59588 a 0.99988834,0.99988834 139.8069 0 0 -1.50978,1.275551 C 51.301904,26.208399 50.713597,27.307903 44.5515,34.8343 32.9606,48.9916 34.6,51.1771 49.6209,64.3152 32.226741,63.721624 28.851587,76.714805 45.431949,89.900492 a 0.99029164,0.99029164 139.48324 0 0 1.464196,-1.251282 z' /></svg>">
+    <% if (it.canonical !== null) { %>
+        <link rel="canonical" href="<%= it.canonical %>">
+    <% } %>
+    <link rel="alternate" type="application/atom+xml" href="feed.atom">
+    <title>music blog<%= it.title === null ? '' : ` (${it.title.toLowerCase()})` %></title>
+    <style>
+        body {
+            font-family: sans-serif;
+            width: 100%;
+            max-width: 35em;
+            margin: 0 auto;
+            padding: 1em;
+            box-sizing: border-box;
+        }
+
+        body > .title {
+            font-style: oblique;
+            display: block;
+            width: 70%;
+        }
+
+        body > .title > svg {
+            width: 100%;
+        }
+
+        #editor {
+            display: none;
+        }
+
+        form.editor {
+            margin-top: 2em;
+        }
+
+        form.editor textarea {
+            width: 100%;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        form.editor input[type="submit"] {
+            float: right;
+        }
+
+        a {
+            color: #099;
+        }
+
+        ol.posts {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+            clear: both;
+        }
+
+        ol.posts > li .timestamp {
+            margin-left: -1em;
+            font-size: 0.7em;
+        }
+
+        ol.posts > li .text a {
+            line-break: anywhere;
+        }
+
+        ol.posts > li .song, ol.posts > li .album {
+            font-style: italic;
+        }
+
+        ol.posts > li > .playlist {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 1em 0;
+        }
+
+        .pagination {
+            text-align: right;
+        }
+
+        .pagination > a:not(:first-child) {
+            margin-left: 1em;
+        }
+
+        .pagination.top {
+            margin: 0;
+            float: right;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', () => {
+            document.querySelectorAll('ol.posts > li > time').forEach(element => {
+                const datetime = element.getAttribute('datetime');
+                const date = (new Date(datetime)).toLocaleDateString();
+                const time = (new Date(datetime)).toLocaleTimeString([], {timeStyle: 'short'});
+                element.innerHTML = `${date} (${time})`;
+            });
+
+            const isAuthed = document.cookie.split('; ').find((row) => row.startsWith('isAuthed='))?.split("=")[1] === 'true';
+            if (isAuthed) {
+                document.getElementById('editor').style.display = 'block';
+            }
+        });
+    </script>
+</head>
+<body>
+    <a class="title" href="/">
+        <svg viewBox="0 0 100 30">
+            <path style="fill: #ee009a;" d="m 6,0
+                L 100,0
+                L 94,30
+                L 0,30 z" />
+            <text role="heading" aria-level="1" style="fill: white; font-size: 16px; font-style: oblique" x="5" y="25">music</text>
+        </svg>
+    </a>
+    <p class="pagination top">
+        <% if (it.prevPage !== null) { %>
+            <a href="<%= it.prevPage %>">←prev</a>
+        <% } %>
+        <% if (it.nextPage !== null) { %>
+            <a href="<%= it.nextPage %>">next→</a>
+        <% } %>
+    </p>
+    <form id="editor" class="editor" action="./post" method="POST">
+        <textarea name="text" rows="3"></textarea>
+        <textarea name="tracks" rows="1" placeholder="Artist - Title"></textarea>
+        <input type="submit" value="post">
+    </form>
+    <ol class="posts">
+        <% it.posts.forEach(post => { %>
+            <li id="<%= post.id %>">
+                <%~ include('@post', {post}) %>
+            </li>
+        <% }) %>
+    </ol>
+    <p class="pagination">
+        <% if (it.prevPage !== null) { %>
+            <a href="<%= it.prevPage %>">←prev</a>
+        <% } %>
+        <% if (it.nextPage !== null) { %>
+            <a href="<%= it.nextPage %>">next→</a>
+        <% } %>
+    </p>
+</body>
+</html>
