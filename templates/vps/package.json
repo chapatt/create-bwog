@@ -7,6 +7,6 @@
         "run": "npx bwog run"
     },
     "dependencies": {
-        "@bwog/bwog": "^0.1.0"
+        "@bwog/bwog": "^0.1.2"
     }
 }
