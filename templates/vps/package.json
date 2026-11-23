@@ -1,5 +1,5 @@
 {
-    "name": "bwog-httpd-template",
+    "name": "bwog-vps-template",
     "private": "true",
     "type": "module",
     "scripts": {
