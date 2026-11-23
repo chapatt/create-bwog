@@ -22,6 +22,7 @@ if (!overwrite) {
     await dir.close();
     if (entry !== null) {
         console.error(`Destination directory '${destination}' is not empty. Set '--overwrite' to continue anyway.`);
+        process.exit(1);
     }
 }
 
