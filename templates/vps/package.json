@@ -4,6 +4,7 @@
     "type": "module",
     "scripts": {
         "build": "npx bwog build -t vps",
+        "build:dev": "npx bwog build -t vps --dev",
         "run": "npx bwog run"
     },
     "dependencies": {

@@ -4,6 +4,7 @@
     "type": "module",
     "scripts": {
         "build": "npx bwog build -t cloudflare-worker",
+        "build:dev": "npx bwog build -t cloudflare-worker --dev",
         "deploy": "npx wrangler deploy",
         "dev": "npx wrangler dev"
     },
